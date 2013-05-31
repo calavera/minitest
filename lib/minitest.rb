@@ -255,7 +255,7 @@ module Minitest
     def self.run reporter, options = {}
       with_info_handler reporter do
         filtered_methods(options).each do |method_name|
-          result = self.new(method_name).run
+          result = init_runnable(method_name, options).run
           raise "#{self}#run _must_ return self" unless self === result
           reporter.record result
         end
